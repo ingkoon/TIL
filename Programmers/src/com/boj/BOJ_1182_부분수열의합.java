@@ -22,23 +22,26 @@ public class BOJ_1182_부분수열의합 {
             board[i] = sc.nextInt();
         }
 
-        nPr(0, new ArrayList<Integer>());
+        nPr(0,0, new ArrayList<Integer>());
         System.out.println(result);
     }
 
-    private static void nPr(int cnt, List<Integer> arr) {
-        if(cnt==n) return;
+    private static void nPr(int start, int cnt, List<Integer> arr) {
+        if(cnt==n) {
+            if(arr.stream().mapToInt(Integer::intValue).sum() == s) result++;
+            return;
+        }
+
         if(!arr.isEmpty() && arr.stream().mapToInt(Integer::intValue).sum() == s) {
-            System.out.println(Arrays.toString(visited));
             result++;
         }
-        for (int i = 0; i < n; i++) {
+        for (int i = start; i < n; i++) {
             if(visited[i]) continue;
             visited[i] = true;
             arr.add(board[i]);
-            nPr(cnt+1, arr);
+            nPr(i+1, cnt+1, arr);
             visited[i] = false;
-            arr.remove(arr.size()-1);
+            arr.remove(arr.indexOf(board[i]));
         }
     }
 }
