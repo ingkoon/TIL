@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class BOJ_12100_22048 {
+public class BOJ_12100_2048 {
     static int n;
     static int[][] board;
     static int result;
