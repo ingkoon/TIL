@@ -9,6 +9,7 @@ public class BOJ_1715_카드정렬하기 {
     static int result;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        //fdsafdsa
         queue = new PriorityQueue<>();
         n = sc.nextInt();
         for (int i = 0; i < n; i++) {
