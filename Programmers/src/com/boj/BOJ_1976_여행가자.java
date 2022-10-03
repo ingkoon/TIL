@@ -12,6 +12,7 @@ public class BOJ_1976_여행가자 {
     static int[] r;
     static StringTokenizer st;
 
+    // union-fined algorithm을 메인으로 작성할 수 있도록 한다,
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         n = Integer.parseInt(bf.readLine());
@@ -19,12 +20,11 @@ public class BOJ_1976_여행가자 {
 
         makeSet();
 
-
-        for (int i = 1; i < n; i++) {
+        // 갈 수 있는 위치에 대해 연결
+        for (int i = 1; i <= n; i++) {
              st = new StringTokenizer(bf.readLine());
-            for (int j = 1; j < m; j++) {
+            for (int j = 1; j <= n; j++) {
                 int tmp = Integer.parseInt(st.nextToken());
-
                 if(tmp == 1){
                     union(i,j);
                 }
@@ -36,8 +36,7 @@ public class BOJ_1976_여행가자 {
         for (int i = 1; i < m; i++) {
             int now = Integer.parseInt(st.nextToken());
 
-            // 맨 처음 출발 도시와 연결되어있지 않은 도시가 있으면
-            // 여행 계획이 불가능한 것임.
+            //find를 통해 연결이 되어있지 않다면 NO를 수행한다.
             if (start != find(now)) {
                 System.out.println("NO");
                 return;
