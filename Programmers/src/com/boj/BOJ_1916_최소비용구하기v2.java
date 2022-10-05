@@ -4,6 +4,7 @@ import java.util.*;
 
 public class BOJ_1916_최소비용구하기v2 {
     static int n, m;
+    static List<Edge>[] graph;
     static boolean[] visited;
 
     static class Edge implements Comparable<Edge>{
@@ -30,7 +31,7 @@ public class BOJ_1916_최소비용구하기v2 {
         n = sc.nextInt();
         m = sc.nextInt();
 
-       List<Edge>[] graph = new ArrayList[n];
+         graph = new ArrayList[n];
 
         for (int i = 0; i < n; i++) {
             graph[i] = new ArrayList<>();

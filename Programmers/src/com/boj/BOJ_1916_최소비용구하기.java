@@ -49,8 +49,6 @@ public class BOJ_1916_최소비용구하기 {
 
         dijkstra(dep);
         System.out.println(dis[ari]);
-        System.out.println(Arrays.toString(dis));
-
     }
 
     static int getSmallIndex(){
@@ -62,14 +60,12 @@ public class BOJ_1916_최소비용구하기 {
                 index = i;
             }
         }
-
         return index;
     }
 
     //다익스트라
     static void dijkstra(int start){
         dis = bus[start].clone();
-        System.out.println(Arrays.toString(dis));
         visited[start] = true;
 
         for (int i = 0; i < n; i++) {
