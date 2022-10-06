@@ -101,13 +101,3 @@ public class BOJ_1194_달이차오른다가자 {
         }
     }
 }
-//78179808c98b58c3811da6534f044077bd4943ed
-
-
-    git filter-branch --env-filter \
-        'if [ $GIT_COMMIT = 78179808c98b58c3811da6534f044077bd4943ed ]
-        then
-        export GIT_AUTHOR_DATE="Wed Oct 5 11:00:00 2022 +0900"
-        export GIT_COMMITTER_DATE="Wed Oct 5 11:00:00 2022 +0900"
-        fi'
-        git commit --amend --no-edit --date="{Wed Oct 5 11:00:00 2022 +0900}"
