@@ -3,7 +3,6 @@ package com.boj;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
 public class BOJ_2239_스도쿠 {
     static int[][] sudoku;
@@ -47,17 +46,17 @@ public class BOJ_2239_스도쿠 {
             if(sudoku[i][c]==n || sudoku[r][i]==n) return false;
         }
 
-        int sr = r/3 * 3;
-        int sc = c - c%3;
+        int sr = r / 3 * 3;
+        int sc = c - c % 3;
         for(int row=sr;row<sr+3;row++) {
             for(int col=sc;col<sc+3;col++) {
                 if(sudoku[row][col]==n) return false;
             }
         }
         return true;
-        }
     }
 }
+
 
 
 
