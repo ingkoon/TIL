@@ -3,8 +3,6 @@ package com.boj;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Scanner;
 
 public class BOJ_1309_동물원 {
     static int n;
@@ -17,12 +15,14 @@ public class BOJ_1309_동물원 {
         cage = new int[n+1][3];
 
         // 시작 지점 초기화
-        Arrays.fill(cage[1], 1);
+        for (int i = 0; i < 3; i++) {
+            cage[1][i] = 1;
+        }
 
         for (int i = 2; i <=n; i++) {
             cage[i][0] = cage[i-1][0] + cage[i-1][1] +  cage[i-1][2];
-            cage[i][1] = cage[i-1][0]  +  cage[i-1][2];
-            cage[i][2] = cage[i-1][0]  +  cage[i-1][1];
+            cage[i][1] = cage[i-1][0] + cage[i-1][2];
+            cage[i][2] = cage[i-1][0] + cage[i-1][1];
             cage[i][0] %= NUM;
             cage[i][1] %= NUM;
             cage[i][2] %= NUM;
@@ -32,7 +32,7 @@ public class BOJ_1309_동물원 {
         for (int i = 0; i < 3; i++) {
             result += cage[n][i];
         }
-        System.out.println(result);
+        System.out.println(result % NUM);
     }
 }
 /*
