@@ -17,12 +17,12 @@ public class BOJ_1916_최소비용구하기 {
         n = sc.nextInt();
         m = sc.nextInt();
 
-
         bus = new int[n][n];
 
         // 방문한 노드를 체크하기 위한 것
         visited = new boolean[n];
-        //최단거리
+        visited[0] = true;
+        //최단거리를 구하기 위한 1차원 배열 초기화
         dis = new int[n];
 
         for (int i = 0; i < n; i++) {
@@ -49,8 +49,6 @@ public class BOJ_1916_최소비용구하기 {
 
         dijkstra(dep);
         System.out.println(dis[ari]);
-        System.out.println(Arrays.toString(dis));
-
     }
 
     static int getSmallIndex(){
@@ -60,21 +58,17 @@ public class BOJ_1916_최소비용구하기 {
             if(dis[i] < min && !visited[i]){
                 min = dis[i];
                 index = i;
-
             }
         }
-
-        System.out.println(index);
         return index;
     }
 
     //다익스트라
     static void dijkstra(int start){
         dis = bus[start].clone();
-        System.out.println(Arrays.toString(dis));
         visited[start] = true;
 
-        for (int i = 0; i < n - 2; i++) {
+        for (int i = 0; i < n; i++) {
             int cur = getSmallIndex();
 
             visited[cur] = true;
@@ -84,7 +78,6 @@ public class BOJ_1916_최소비용구하기 {
                         dis[j] = dis[cur] + bus[cur][j];
                     }
             }
-            System.out.println(Arrays.toString(dis));
         }
     }
 }
