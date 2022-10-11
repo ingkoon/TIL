@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="whereismyhome">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="jstl-1.2.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/jstl-1.2/jstl-1.2">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mysql-connector-java-8.0.30.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/mysql-connector-java-8.0.30/mysql-connector-java-8.0.30">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="json-simple-1.1.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/json-simple-1.1/json-simple-1.1">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="gson-2.9.0.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/gson-2.9.0/gson-2.9.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="protobuf-java-3.19.4.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/protobuf-java-3.19.4/protobuf-java-3.19.4">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="whereismyhome"/>
+        <property name="java-output-path" value="/whereismyhome/build/classes"/>
+    </wb-module>
+</project-modules>
