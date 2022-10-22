@@ -14,7 +14,7 @@ public class Solution_5653_줄기세포배양 {
     static Cell[][] map;
     static StringTokenizer st;
 
-    static int SIZE = 30;
+    static int SIZE = 20;
     static int MID = SIZE / 2;
 
     static int[] dr = {1, 0, -1, 0};
@@ -61,29 +61,38 @@ public class Solution_5653_줄기세포배양 {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
 
-                if(map[i][j] == null || map[i][j].life == -1) continue;
+                //해당 위치가 초기화 된 위치인지 혹은 죽은 세포인지
+                if(map[i][j] == null || map[i][j].life == 0) continue;
 
+                // 잠들었다면
                 if(map[i][j].wait > 0) {
                     map[i][j].wait --;
                     continue;
                 }
 
-                if(map[i][j].wait == 0 && map[i][j].life > 0){
+                // 활동상태일 경우
+                if(map[i][j].life > 0){
+                    //사방으로 이동
                     for (int l = 0; l < 4; l++) {
                         int nr = i + dr[l];
                         int nc = j + dc[l];
+                        // 다음 위치가 비어있을 경우
+                        if(!isCheck(nr, nc))continue;
                         if(map[nr][nc] == null) {
+                            // 초기화 수행
                             map[nr][nc] = new Cell(map[i][j].initSize, map[i][j].initSize, map[i][j].initSize);
                             continue;
+                        } else {
+                            // 갈수 없고, 이미 자는 시간이 줄거나 활동하고 있는 세포의 위치라면
+                            if (!isActive(nr, nc)) continue;
+                            // 방금 생성되었지만 생명이 더 작다면
+                            if (isActive(nr, nc) && map[nr][nc].initSize > map[i][j].initSize) continue;
+                            else if (isActive(nr, nc) && map[nr][nc].initSize < map[i][j].initSize) {
+                                map[nr][nc] = new Cell(map[i][j].initSize, map[i][j].initSize, map[i][j].initSize);
+                                continue;
+                            }
+//                            map[nr][nc] = new Cell(map[i][j].initSize, map[i][j].initSize, map[i][j].initSize);
                         }
-                        if(!isCheck(nr, nc) || map[nr][nc].initSize != map[nr][nc].life) continue;
-                        if(map[nr][nc].initSize == map[nr][nc].life && map[nr][nc].initSize > map[i][j].initSize) continue;
-                        else if(map[nr][nc].initSize == map[nr][nc].life && map[nr][nc].initSize < map[i][j].initSize){
-                            map[nr][nc] = new Cell(map[i][j].initSize, map[i][j].initSize, map[i][j].initSize);
-                            continue;
-                        }
-                        map[nr][nc] = new Cell(map[i][j].initSize, map[i][j].initSize, map[i][j].initSize);
-
                     }
                     map[i][j].life--;
                 }
@@ -105,11 +114,17 @@ public class Solution_5653_줄기세포배양 {
 
         @Override
         public String toString() {
-            return  initSize+"/" + life;
+            return   " " + initSize+"/" + life;
         }
     }
-    
+
+    //배열을 벗어나는지
     static boolean isCheck(int nr, int nc){
         return 0 <= nr && nr < SIZE && 0 <= nc && nc < SIZE;
+    }
+
+    // 해당 위치가 방금 초기화 된 위치인지
+    static boolean isActive(int nr, int nc){
+        return  map[nr][nc].initSize == map[nr][nc].life && map[nr][nc].initSize == map[nr][nc].wait ;
     }
 }
