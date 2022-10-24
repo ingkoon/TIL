@@ -24,7 +24,6 @@ public class BOJ_20546_기적의매매법 {
         doTiming();
         int jhResult = jCredit + jh * prices[DAY-1];
         int smResult = sCredit + sm * prices[DAY-1];
-//        System.out.println(smResult + " " + jhResult);
 
         String result = jhResult > smResult ? "BNP" : jhResult < smResult ?  "TIMING" : "SAMESAME";
         System.out.println(result);
