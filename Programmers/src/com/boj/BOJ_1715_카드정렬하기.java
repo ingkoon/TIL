@@ -15,7 +15,6 @@ public class BOJ_1715_카드정렬하기 {
         for (int i = 0; i < n; i++) {
             queue.offer(sc.nextInt());
         }
-
         while (queue.size() > 1){
             int card1 = queue.poll();
             int card2 = queue.poll();
