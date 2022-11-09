@@ -39,7 +39,8 @@ public class Solution_새로운아이디 {
 //            result+=c;
 //        }
         for (int i = new_id.length()-1; i >=2; i--) {
-            String dots = ".".repeat(i);
+            String dots = ".";
+//            String dots = ".".repeat(i);
             if(new_id.contains(dots)) {
                 new_id = new_id.replace(dots,".");
             }

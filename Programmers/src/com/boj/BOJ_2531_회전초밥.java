@@ -26,12 +26,12 @@ public class BOJ_2531_회전초밥 {
                 tmp[j] = belt[i+j];
             }
             boolean flag = true;
-            for (int j = 0; j < k; j++) {
-                if(Collections.frequency(List.of(tmp), tmp[j]) > 1){
-                    flag = false;
-                    break;
-                }
-            }
+//            for (int j = 0; j < k; j++) {
+//                if(Collections.frequency(List(tmp), tmp[j]) > 1){
+//                    flag = false;
+//                    break;
+//                }
+//            }
             if(!flag) continue;
             else if(flag && !Arrays.asList(tmp).contains(c)) {
                 Arrays.toString(tmp);
