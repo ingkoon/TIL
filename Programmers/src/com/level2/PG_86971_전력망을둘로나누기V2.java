@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class PG_86971_전력망을둘로나누기 {
+public class PG_86971_전력망을둘로나누기V2 {
     static boolean visited[];
     static List<Integer>[] tree;
     static int answer = Integer.MAX_VALUE;
