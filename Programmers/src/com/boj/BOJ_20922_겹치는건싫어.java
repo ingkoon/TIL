@@ -30,25 +30,26 @@ public class BOJ_20922_겹치는건싫어 {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
+        int s = 0, e = 0;
         int result = 0;
-        int cnt = 0;
 
-        for (int i = 0; i < n; i++) {
-            int tmp = arr[i];
-            cntArray[tmp]++;
-            if(cntArray[tmp] > k){
-                s = i;
-                result = Math.max(result, cnt);
-                cntArray = new int[SIZE];
-                cntArray[i]++;
-                cnt = 1;
-                continue;
+        while(s<=e)
+        {
+            if(e<=n-1 &&cntArray[arr[e]] <k)
+            {
+                cntArray[arr[e]]++;
+                e++;
+
             }
-            e++;
-            cntArray[tmp]++;
-            cnt++;
+            else if(cntArray[arr[e]] == k)
+            {
+                cntArray[arr[s]]--;
+                s++;
+            }
+
+            result = Math.max(result, e - s);
+            if(e == n)
+                break;
         }
-        result = Math.max(result, cnt);
-        System.out.println(result);
     }
 }
