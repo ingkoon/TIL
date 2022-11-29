@@ -11,8 +11,6 @@ class Solution1{
                 days[i] += 1;
             }
         }
-        int tmp = 0;
-        boolean flag = false;
 
         for(int i=0; i< SIZE; i++){
             if(days[i]>0) answer++;
