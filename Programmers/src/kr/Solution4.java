@@ -1,6 +1,8 @@
+package kr;
+
 import java.io.*;
 import java.util.*;
-class Main {
+class Solution4 {
 	
 	static int[] arr;
 	static int SIZE = 20000000;
