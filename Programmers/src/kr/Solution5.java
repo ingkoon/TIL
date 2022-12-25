@@ -30,7 +30,7 @@ class Solution5 {
 			bCount ++;
 			building.add(new Container(size, true));
 		}
-		
+
 		Collections.sort(building, new Comparator<Container>() {
 			@Override
 			public int compare(Container o1, Container o2) {
@@ -39,6 +39,7 @@ class Solution5 {
 		});
 
 		System.out.println(Arrays.toString(building.toArray()));
+
 
 		for (Container container : building) {
 			
