@@ -20,7 +20,7 @@ class Solution2 {
 			foods.add(new food(eat, toast));
 		}
 
-		Collections.sort(foods, (o1, o2) -> { // 익히는시간과 먹는시간의 차가 작을 수록 앞에 오도록 한다.
+		foods.sort((o1, o2) -> { // 익히는시간과 먹는시간의 차가 작을 수록 앞에 오도록 한다.
 			int one = o1.toasting - o1.eating;
 			int two = o2.toasting - o2.eating;
 			return one - two;
