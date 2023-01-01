@@ -12,7 +12,7 @@ class Solution2 {
 		StringTokenizer e = new StringTokenizer(br.readLine()); // 햄버거를 먹는 시간
 		StringTokenizer t = new StringTokenizer(br.readLine()); // 햄버거를 익히는 시간
 
-		foods = new ArrayList(); // 행버거 익히는/먹는시간을 담는 list foods
+		foods = new ArrayList(); // 행버거 익히는먹는시간을 담는 list foods
 
 		for(int i = 0; i< n; i++){
 			int eat = Integer.parseInt(e.nextToken());
