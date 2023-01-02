@@ -23,12 +23,10 @@ public class JpaMain {
 
         //code
         try{
-            Member member = new Member();
-            member.setId(2L);
-            member.setName("HelloB");
-
+            Member findMember = em.find(Member.class, 1L);
+            System.out.println("findMember = " + findMember.getId());
+            System.out.println("findMember = " + findMember.getName());
             //영속 계층에 저장
-            em.persist(member);
             tx.commit();
         } catch (Exception e){
             // 문제 발생시 rollback
