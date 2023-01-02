@@ -23,10 +23,16 @@ public class JpaMain {
 
         //code
         try{
+            /*
+            * em으로 가져온 대상에 대해 JPA가 관리를 시작한다.
+            * 변경 사항에 대해 transaction을 commit 하는 시점에서 파악후
+            * 변경 사항에 대해 update를 수행한다.
+            * */
             Member findMember = em.find(Member.class, 1L);
-            System.out.println("findMember = " + findMember.getId());
-            System.out.println("findMember = " + findMember.getName());
-            //영속 계층에 저장
+            findMember.setName("HelloJPA");
+
+            // 영속 계층에 저장
+            // em.persist(); 코드는 작성하지 않아도 된다.
             tx.commit();
         } catch (Exception e){
             // 문제 발생시 rollback
