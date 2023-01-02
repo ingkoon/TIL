@@ -4,13 +4,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
         /*
         2022.01.02 이인재
         EntityManagerFactory
-        emf는 애플리케이션 로딩시점에서 단 하나만 생성하면된다.
+        EntityManagerFactory는 애플리케이션 로딩시점(웹서버가 올라가는 시점)에서
+        단 하나만 생성하면된다.
         * */
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
 
@@ -23,16 +25,16 @@ public class JpaMain {
 
         //code
         try{
-            /*
-            * em으로 가져온 대상에 대해 JPA가 관리를 시작한다.
-            * 변경 사항에 대해 transaction을 commit 하는 시점에서 파악후
-            * 변경 사항에 대해 update를 수행한다.
-            * */
-            Member findMember = em.find(Member.class, 1L);
-            findMember.setName("HelloJPA");
+            // 대상의 테이블이 아닌 대상의 객체(Entity)를 가져온다.
+            // 이렇게 작성시 DB에 맞는 문법을 통해 구현해준다.
+            List<Member> result = em.createQuery("select m from Member as m", Member.class)
+                    .setFirstResult(0)
+                    .setMaxResults(9)
+                    .getResultList();
 
-            // 영속 계층에 저장
-            // em.persist(); 코드는 작성하지 않아도 된다.
+            for (Member member : result) {
+                System.out.println("member.getName() = " + member.getName());
+            }
             tx.commit();
         } catch (Exception e){
             // 문제 발생시 rollback
