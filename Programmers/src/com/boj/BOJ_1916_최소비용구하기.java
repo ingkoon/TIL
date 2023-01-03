@@ -1,83 +1,75 @@
 package com.boj;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.StringTokenizer;
 
 public class BOJ_1916_최소비용구하기 {
-    static int n, m, dep, ari;
+    static int n, m;
+    static int start, end;
+    static List<Node>[] graph;
+    
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        n = Integer.parseInt(bf.readLine());
+        m = Integer.parseInt(bf.readLine());
 
-    static int[][] bus;
-    static boolean[] visited;
-    static int[] dis;
 
-    static int MAX = 100001;
+        graph = new ArrayList[n+1];
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
-        m = sc.nextInt();
+        for (int i = 0; i < n+1; i++)
+            graph[i] = new ArrayList<Node>();
 
-        bus = new int[n][n];
+        int[] dist = new int[n+1];
 
-        // 방문한 노드를 체크하기 위한 것
-        visited = new boolean[n];
-        visited[0] = true;
-        //최단거리를 구하기 위한 1차원 배열 초기화
-        dis = new int[n];
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if(i == j) {
-                    bus[i][j] = 0;
-                    continue;
-                }
-                bus[i][j] = MAX;
-            }
-        }
-
+        for (int i = 0; i < n+1; i++)
+            dist[i] = Integer.MAX_VALUE;
+        
         for (int i = 0; i < m; i++) {
-            int start = sc.nextInt() - 1;
-            int end = sc.nextInt() - 1;
-            int cost = sc.nextInt();
-            bus[start][end] = cost;
-            bus[end][start] = cost;
+            StringTokenizer st = new StringTokenizer(bf.readLine());
+            int tmp = Integer.parseInt(st.nextToken()); // 출발지점
+            int des = Integer.parseInt(st.nextToken()); // 도착지점
+            int cost = Integer.parseInt(st.nextToken()); // 가는 비용
+            graph[tmp].add(new Node(des, cost));
         }
 
-        // 출발, 도착 정보®
-        dep = sc.nextInt()-1;
-        ari = sc.nextInt()-1;
+        StringTokenizer st = new StringTokenizer(bf.readLine());
+        start = Integer.parseInt(st.nextToken());
+        end = Integer.parseInt(st.nextToken());
 
-        dijkstra(dep);
-        System.out.println(dis[ari]);
-    }
+        PriorityQueue<Node> pq = new PriorityQueue<Node>((o1, o2) -> Integer.compare(o1.cost, o2.cost));
 
-    static int getSmallIndex(){
-        int min = MAX;
-        int index = 0;
-        for (int i = 0; i < n; i++) {
-            if(dis[i] < min && !visited[i]){
-                min = dis[i];
-                index = i;
+        pq.offer(new Node(start, 0));
+        dist[start] = 0;
+        while (!pq.isEmpty()){
+            Node pNode = pq.poll();
+            if(pNode.idx == end){
+                System.out.println(dist[pNode.idx]);
+                break;
+            }
+            if(dist[pNode.idx] < pNode.cost){
+                continue;
+            }
+            for(int i = 0; i< graph[pNode.idx].size(); i++){
+                Node nNode = graph[pNode.idx].get(i);
+                if(dist[nNode.idx] > pNode.cost + nNode.cost){
+                    dist[nNode.idx] = pNode.cost + nNode.cost;
+                    pq.offer(new Node(nNode.idx, dist[nNode.idx]));
+                }
             }
         }
-        return index;
     }
 
-    //다익스트라
-    static void dijkstra(int start){
-        dis = bus[start].clone();
-        visited[start] = true;
+    static class Node{
+        int idx, cost;
 
-        for (int i = 0; i < n; i++) {
-            int cur = getSmallIndex();
-
-            visited[cur] = true;
-            for (int j = 0; j < n; j++) {
-                if(!visited[j])
-                    if(dis[cur] + bus[cur][j] < dis[j]){
-                        dis[j] = dis[cur] + bus[cur][j];
-                    }
-            }
+        public Node(int idx, int cost) {
+            this.idx = idx;
+            this.cost = cost;
         }
     }
 }
