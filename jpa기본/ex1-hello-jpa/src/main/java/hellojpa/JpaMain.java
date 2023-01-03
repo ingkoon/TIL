@@ -35,7 +35,8 @@ public class JpaMain {
             System.out.println("====== BEFORE ======");
             em.persist(member);
             System.out.println("====== AFTER ======");
-            em.detach(member);
+            em.remove(member);
+
             tx.commit();
         } catch (Exception e){
             // 문제 발생시 rollback
