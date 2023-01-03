@@ -25,17 +25,12 @@ public class JpaMain {
 
         //code
         try{
-            // 비영속 상태
-            Member member = new Member();
-            member.setId(100L);
-            member.setName("HelloJPA");
-
-            //영속
-            //하지만 이때까지도 DB에 저장되지 않는다.
-            System.out.println("====== BEFORE ======");
-            em.persist(member);
-            System.out.println("====== AFTER ======");
-            em.remove(member);
+            /*
+            1차캐시에 값을 저장했기 때문에
+            별도의 조회쿼리가 없더라도 객체를 가져올 수 있다.
+             */
+            Member findMember = em.find(Member.class, 101L);
+            Member findMember2 = em.find(Member.class, 101L);
 
             tx.commit();
         } catch (Exception e){
