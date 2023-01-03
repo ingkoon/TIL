@@ -32,6 +32,7 @@ public class JpaMain {
             Member findMember = em.find(Member.class, 101L);
             Member findMember2 = em.find(Member.class, 101L);
 
+            System.out.println("findMember = " + (findMember == findMember2));
             tx.commit();
         } catch (Exception e){
             // 문제 발생시 rollback
