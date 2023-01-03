@@ -25,16 +25,17 @@ public class JpaMain {
 
         //code
         try{
-            // 대상의 테이블이 아닌 대상의 객체(Entity)를 가져온다.
-            // 이렇게 작성시 DB에 맞는 문법을 통해 구현해준다.
-            List<Member> result = em.createQuery("select m from Member as m", Member.class)
-                    .setFirstResult(0)
-                    .setMaxResults(9)
-                    .getResultList();
+            // 비영속 상태
+            Member member = new Member();
+            member.setId(100L);
+            member.setName("HelloJPA");
 
-            for (Member member : result) {
-                System.out.println("member.getName() = " + member.getName());
-            }
+            //영속
+            //하지만 이때까지도 DB에 저장되지 않는다.
+            System.out.println("====== BEFORE ======");
+            em.persist(member);
+            System.out.println("====== AFTER ======");
+
             tx.commit();
         } catch (Exception e){
             // 문제 발생시 rollback
