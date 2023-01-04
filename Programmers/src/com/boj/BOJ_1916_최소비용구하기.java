@@ -45,6 +45,7 @@ public class BOJ_1916_최소비용구하기 {
         PriorityQueue<Node> pq = new PriorityQueue<Node>((o1, o2) -> Integer.compare(o1.cost, o2.cost));
         pq.offer(new Node(start, 0)); // 시작 지점 삽입
         dist[start] = 0; // 시작지점의 값을 초기화한다.
+
         while (!pq.isEmpty()){
             Node pNode = pq.poll();
             if(pNode.idx == end){ // 도착지점의 idx와 일치한다는 것은 최단거리가 보장되었다는 뜻
