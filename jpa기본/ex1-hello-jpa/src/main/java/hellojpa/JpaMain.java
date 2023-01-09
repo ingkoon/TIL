@@ -25,14 +25,6 @@ public class JpaMain {
 
         //code
         try{
-            /*
-            1차캐시에 값을 저장했기 때문에
-            별도의 조회쿼리가 없더라도 객체를 가져올 수 있다.
-             */
-            Member findMember = em.find(Member.class, 101L);
-            Member findMember2 = em.find(Member.class, 101L);
-
-            System.out.println("findMember = " + (findMember == findMember2));
             tx.commit();
         } catch (Exception e){
             // 문제 발생시 rollback
