@@ -25,6 +25,16 @@ public class JpaMain {
 
         //code
         try{
+
+            Member member1 = new Member(150L, "A");
+            Member member2 = new Member(160L, "B");
+
+            em.persist(member1);
+            em.persist(member2);
+
+
+            System.out.println("=======================");;
+
             /*
             1차캐시에 값을 저장했기 때문에
             별도의 조회쿼리가 없더라도 객체를 가져올 수 있다.
