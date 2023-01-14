@@ -37,7 +37,8 @@ public class BOJ_2098_외판원순회 {
             if(w[x][0] == 0) return SIZE;
             return w[x][0];
         }
-        if(dp[x][check] == -1) return dp[x][check]; // 이미 방문한 도시
+        if(dp[x][check] != -1) return dp[x][check]; // 이미 방문한 도시
+
 
         dp[x][check] = SIZE;
 
