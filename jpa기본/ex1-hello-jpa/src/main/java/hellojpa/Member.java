@@ -10,6 +10,13 @@ public class Member {
     @Column(name = "name")
     private String username;
     private Integer age;
+
+    /*
+    기본적으로 ORDINAL 타입이다.
+    하지만 권장하지 않는다.
+    enum클래스의 요소들의 순서가 바뀌면
+    바뀐대로 적용되기 때문에
+    */
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
     @Temporal(TemporalType.TIMESTAMP)

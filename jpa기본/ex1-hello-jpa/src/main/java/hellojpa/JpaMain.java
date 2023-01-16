@@ -9,7 +9,7 @@ import java.util.List;
 public class JpaMain {
     public static void main(String[] args) {
         /*
-        2022.01.02 이인재
+        2023.01.02 이인재
         EntityManagerFactory
         EntityManagerFactory는 애플리케이션 로딩시점(웹서버가 올라가는 시점)에서
         단 하나만 생성하면된다.
