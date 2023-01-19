@@ -5,10 +5,17 @@ import java.util.Date;
 
 @Entity
 public class Member {
+    /*
+    십 몇억을 넘어가면 int는 다시 돈다.
+
+     */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "name")
     private String username;
+
     private Integer age;
 
     /*
