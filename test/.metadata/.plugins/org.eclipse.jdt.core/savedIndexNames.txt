@@ -1,0 +1,7 @@
+INDEX VERSION 1.131+/Users/orlando/Desktop/O/git/TIL/test/.metadata/.plugins/org.eclipse.jdt.core
+3728355240.index
+1530852292.index
+1865797976.index
+2759848897.index
+2089348824.index
+3645688346.index
