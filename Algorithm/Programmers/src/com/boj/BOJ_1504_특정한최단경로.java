@@ -10,7 +10,6 @@ public class BOJ_1504_특정한최단경로 {
     static int v1, v2;
     static int SIZE = 100000;
     static List<Node>[] graph;
-    static boolean[] visited;
 
         public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
