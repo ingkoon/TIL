@@ -25,23 +25,28 @@ public class JpaMain {
 
         //code
         try{
-            System.out.println("=======================");;
+           Team team = new Team();
+           team.setName("TeamA");
+           em.persist(team);
 
-            /*
-            1차캐시에 값을 저장했기 때문에
-            별도의 조회쿼리가 없더라도 객체를 가져올 수 있다.
-             */
-            Member findMember = em.find(Member.class, 101L);
-            Member findMember2 = em.find(Member.class, 101L);
+           Member  member = new Member();
 
-            System.out.println("findMember = " + (findMember == findMember2));
+           member.setUsername("member1");
+           member.setTeamId(team.getId());
+
+           em.persist(member);
+
+            Member findMember = em.find(Member.class, member.getId());
+
+            Long teamId = findMember.getTeamId();
+            Team findTeam = em.find(Team.class, teamId); // 이것은 다소 불편한 차이이다.
             tx.commit();
         } catch (Exception e){
             // 문제 발생시 rollback
-            tx.rollback();
+           tx.rollback();
         } finally {
             // em이 내부적으로 데이터베이스 커넥션을 가져가기 때문에 사용 후 종료해주어야 한다.
-            em.close();
+           em.close();
         }
 
         //emf 종료
