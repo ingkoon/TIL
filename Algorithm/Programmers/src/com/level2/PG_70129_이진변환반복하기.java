@@ -1,9 +1,15 @@
 package com.level2;
 
+import java.util.*;
+
 public class PG_70129_이진변환반복하기 {
     public static void main(String[] args) {
         String input = "110010101001";
         System.out.println(solution(input));
+        Queue<String> test = new LinkedList<>();
+        String[] test1;
+        test1 = (String[]) test.toArray();
+
     }
     static int[] solution(String s) {
         int zero = 0;
@@ -23,6 +29,7 @@ public class PG_70129_이진변환반복하기 {
             s = Integer.toBinaryString(size);
         }
         int[] answer = new int[] {cnt, zero};
+
         return answer;
     }
 }
