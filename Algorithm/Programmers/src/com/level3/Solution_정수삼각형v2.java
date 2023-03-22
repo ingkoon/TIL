@@ -2,7 +2,7 @@ package com.level3;
 
 import java.util.Arrays;
 
-public class Solution_정수삼각형 {
+public class Solution_정수삼각형v2 {
     static int SIZE;
 
     public static void main(String[] args) {
