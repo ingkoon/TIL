@@ -26,14 +26,14 @@ public class Order {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    private int cost;
+    private int price;
 
     @OneToMany
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @Builder
-    public Order(Member member, int cost){
+    public Order(Member member, int price){
         this.member = member;
-        this.cost = cost;
+        this.price = price;
     }
 }

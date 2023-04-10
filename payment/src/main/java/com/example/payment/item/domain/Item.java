@@ -16,14 +16,14 @@ public class Item {
 
     private String name;
 
-    private int cost;
+    private int price;
 
     private int stock;
 
     @Builder
-    public Item(String name, int cost, int stock){
+    public Item(String name, int price, int stock){
         this.name = name;
-        this.cost = cost;
+        this.price = price;
         this.stock = stock;
     }
 }

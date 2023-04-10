@@ -14,23 +14,24 @@ spring:
   config:
     activate:
       on-profile: dev
-  main:
-    allow-bean-definition-overriding: true
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/payment?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: root
-    password: root
+    username: ssafy
+    password: ssafy
 
-    jpa:
-      show-sql: false
-      properties:
-        hibernate:
-          format_sql: true
-      database: mysql
+  jpa:
+    show-sql: false
+    properties:
       hibernate:
-        ddl-auto: create
+        format_sql: true
+    database: mysql
+    hibernate:
+      ddl-auto: create-drop
+
+boot-pay:
+  rest-api-key: 643432073049c8001d7d10ac
 
 ---
 spring:
@@ -45,11 +46,11 @@ spring:
     username: root
     password: root
 
-    jpa:
-      show-sql: false
-      properties:
-        hibernate:
-          format_sql: true
-      database: mysql
+  jpa:
+    show-sql: false
+    properties:
       hibernate:
-        ddl-auto: create
+        format_sql: true
+    database: mysql
+    hibernate:
+      ddl-auto: create

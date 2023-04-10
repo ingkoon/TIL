@@ -1,6 +1,7 @@
 package com.example.payment.user.domain;
 
 import com.example.payment.order.domain.Order;
+import com.example.payment.orderitem.domain.OrderItem;
 import com.example.payment.user.enums.Grade;
 import lombok.Builder;
 import lombok.Getter;
