@@ -32,6 +32,7 @@ spring:
 
 boot-pay:
   rest-api-key: 643432073049c8001d7d10ac
+  private-key: D6+wqdBeprLC6I2LwR42iG/YHMIHjwaynDkkjSmLHYo=
 
 ---
 spring:
