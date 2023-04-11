@@ -19,9 +19,9 @@ public class OrderService {
     private final ItemRepository itemRepository;
     private final BootPayComponent bootPayComponent;
 
-    public void getTokenByBootPay() throws Exception{
+    public String getTokenByBootPay() throws Exception{
         HashMap<String, Object> hashMap = bootPayComponent.connectBootpay();
-        System.out.println(hashMap.get("access_token"));
+        return hashMap.get("access_token").toString();
     }
 
     public void orderItem(){
