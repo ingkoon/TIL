@@ -8,10 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class OrderServiceTest {
@@ -27,7 +23,7 @@ class OrderServiceTest {
     void getTokenByBootPay() throws Exception{
         System.out.println(restApiKey);
         System.out.println(privateKey);
-        HashMap<String, Object> hashMap = bootPayComponent.connectBootpay();
+        HashMap<String, Object> hashMap = bootPayComponent.connectBootPay();
         System.out.println(hashMap.size());
 
     }

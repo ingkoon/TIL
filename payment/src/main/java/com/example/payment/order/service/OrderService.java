@@ -4,7 +4,6 @@ import com.example.payment.common.bootpay.BootPayComponent;
 import com.example.payment.item.repostiory.ItemRepository;
 import com.example.payment.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,11 +19,11 @@ public class OrderService {
     private final BootPayComponent bootPayComponent;
 
     public String getTokenByBootPay() throws Exception{
-        HashMap<String, Object> hashMap = bootPayComponent.connectBootpay();
+        HashMap<String, Object> hashMap = bootPayComponent.connectBootPay();
         return hashMap.get("access_token").toString();
     }
 
-    public void orderItem(){
+    public void validateOrder(){
 
     }
 }
