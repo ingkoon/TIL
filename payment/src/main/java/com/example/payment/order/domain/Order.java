@@ -22,7 +22,9 @@ public class Order {
 
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    private Long orderNumber;
-    @ManyToOne(fetch = FetchType.LAZY)
+
+//    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;
 

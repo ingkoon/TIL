@@ -13,17 +13,19 @@ import java.util.HashMap;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class OrderService {
-
     private final OrderRepository orderRepository;
     private final ItemRepository itemRepository;
     private final BootPayComponent bootPayComponent;
+
+    public void findByOrder(Long orderId){
+        orderRepository.findById(orderId);
+    }
 
     public String getTokenByBootPay() throws Exception{
         HashMap<String, Object> hashMap = bootPayComponent.connectBootPay();
         return hashMap.get("access_token").toString();
     }
-
-    public void validateOrder(){
-
+    public void validateOrder(String receiptId) throws Exception {
+        bootPayComponent.validateOrder(receiptId);
     }
 }
