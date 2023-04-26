@@ -1,13 +1,11 @@
 package com.example.payment.orderitem.domain;
 
 import com.example.payment.order.domain.Order;
-import com.example.payment.user.domain.Member;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
 
 @Entity
 @Getter

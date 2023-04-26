@@ -14,7 +14,6 @@ import java.util.HashMap;
 @RequiredArgsConstructor
 public class OrderService {
     private final OrderRepository orderRepository;
-    private final ItemRepository itemRepository;
     private final BootPayComponent bootPayComponent;
 
     public void findByOrder(Long orderId){
