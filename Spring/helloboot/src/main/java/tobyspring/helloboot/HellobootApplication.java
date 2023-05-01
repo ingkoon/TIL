@@ -27,6 +27,7 @@ public class HellobootApplication {
 
 		// 빈 클래스 지정
 		applicationContext.registerBean(HelloController.class);
+		applicationContext.registerBean(SimpleHelloService.class);
 		// bean object 생성
 		applicationContext.refresh();
 
