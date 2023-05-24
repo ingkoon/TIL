@@ -13,14 +13,14 @@ public class 성적평가 {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         n = Integer.parseInt(bf.readLine());
         score = new int[n+1][n];
-        Rank[] arr = new Rank[n][n];
+        Rank[] arr = new Rank[n];
 
         for (int i = 0; i < n; i++) {
 
             String[] s = bf.readLine().split(" ");
 
             for (int j = 0; j < s.length; j++) {
-                arr[i][j] = new Rank(j , Integer.parseInt(s[j]));
+                arr[i] = new Rank(j , Integer.parseInt(s[j]));
             }
 
             Arrays.sort(arr, new Comparator<Rank>() {
