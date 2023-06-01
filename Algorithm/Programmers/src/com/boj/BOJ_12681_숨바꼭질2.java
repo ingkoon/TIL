@@ -12,7 +12,6 @@ public class BOJ_12681_숨바꼭질2 {
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         String[] tmp = bf.readLine().split(" ");
-
         n = Integer.parseInt(tmp[0]);
         k = Integer.parseInt(tmp[1]);
         visited = new boolean[100001];
