@@ -1,0 +1,4 @@
+rootProject.name = 'saga'
+include 'member'
+include 'saga-core'
+
