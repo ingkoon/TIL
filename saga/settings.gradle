@@ -1,4 +1,5 @@
 rootProject.name = 'saga'
 include 'member'
 include 'saga-core'
+include 'saga-member'
 
