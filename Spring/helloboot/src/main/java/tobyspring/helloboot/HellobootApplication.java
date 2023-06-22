@@ -43,6 +43,6 @@ public class HellobootApplication {
 
 	public static void main(String[] args) {
 		// 빈 등록 정보, 리소스 접근 방법, 이벤트 전달-구독 방법 등을 수행해주는 Object = Spring container
-		MySpringApplication.run(HellobootApplication.class, args);
+		SpringApplication.run(HellobootApplication.class, args);
 	}
 }
