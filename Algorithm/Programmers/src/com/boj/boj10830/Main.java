@@ -3,6 +3,7 @@ package com.boj.boj10830;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
 import java.util.StringTokenizer;
 
 //boj 10830 행렬 제곱
@@ -63,4 +64,6 @@ public class Main {
         }
         return result;
     }
+
+
 }
