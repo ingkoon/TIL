@@ -11,47 +11,41 @@ boj 10942 펠린드롬?
  */
 public class Main {
     static int n, m;
-    static int[] nums;
     static boolean[][] dp;
 
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         n = Integer.parseInt(bf.readLine());
-        nums = new int[n+1];
+        int[] nums = new int[n+1];
         dp = new boolean[n+1][n+1];
         StringTokenizer st = new StringTokenizer(bf.readLine());
         for (int i = 1; i <= n; i++) {
             nums[i] = Integer.parseInt(st.nextToken());
         }
 
-        setDp();
+        setDp(nums);
 
         m = Integer.parseInt(bf.readLine());
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < m; i++) {
             st = new StringTokenizer(bf.readLine());
             int s = Integer.parseInt(st.nextToken());
             int e = Integer.parseInt(st.nextToken());
 
-            System.out.println(getPalindrome(s, e));
+            sb.append(dp[s][e] ? 1 : 0).append("\n");
         }
+        System.out.println(sb);
     }
-    static void setDp(){
+    static void setDp(int[] nums){
         for (int i = 1; i <= n; i++) {
-            dp[i][i] = true;
-        }
-        for (int i = 0; i <= n-1; i++) {
-            if(nums[i] == nums[i+1]) dp[i][i+1] = true;
-        }
-        for (int i = 2; i < n; i++) {
-            for (int j = 1; j <= n-i; j++) {
-                if(nums[j] == nums[j+i] && dp[j+1][j+i-1])
-                    dp[j][j + i] = true;
+            for (int j = 1; j <= i; j++) {
+                if(i == j) dp[i][j] = true;
+                else if(i - j == 1) dp[j][i] = nums[i] == nums[j];
+                else{
+                    dp[j][i] = nums[i] == nums[j] && dp[j+1][i-1];
+                }
             }
         }
-    }
-    static int getPalindrome(int start, int end) {
-       if(dp[start][end]) return 1;
-       return 0;
     }
 }
 
