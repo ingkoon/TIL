@@ -48,44 +48,44 @@ public class Main {
     }
 
     static int bfs(int r, int c){
-        int result = Integer.MAX_VALUE;
+        int result = 0;
         PriorityQueue<Node> queue = new PriorityQueue<>(new Comparator<Node>() {
             @Override
             public int compare(Node o1, Node o2) {
                 return o1.count - o2.count;
             }
         });
-        queue.offer(new Node(r, c, 0, 0));
-        visited[0][r][c] = true;
-        boolean flag = false;
+
 
         for (int i = 0; i < 4; i++) {
             int nr = r + dr[i];
             int nc = c + dc[i];
 
-            if(!isCheck(nr, nc) || visited[0][nr][nc] || board[nr][nc] == '*')
+            if(!isCheck(nr, nc) || board[nr][nc] == '*')
                 continue;
 
             queue.offer(new Node(nr, nc, 0, i));
-            visited[0][nr][nc] = true;
         }
 
         while (!queue.isEmpty()){
             Node node = queue.poll();
+
             if(board[node.r][node.c] == 'C'){
-                if(flag){
-                    result = Math.min(result, node.count);
+
+                    result = node.count;
                     break;
-                }
-                flag = true;
+
             }
+            if(visited[node.dir][node.r][node.c])
+                continue;
+            visited[node.dir][node.r][node.c] = true;
 
             for (int i = 0; i < 4; i++) {
 
                 int nr = node.r + dr[i];
                 int nc = node.c + dc[i];
 
-                if(!isCheck(nr, nc) || visited[node.dir][nr][nc] || board[nr][nc] == '*')
+                if(!isCheck(nr, nc) ||  board[nr][nc] == '*')
                     continue;
 
                 if(node.dir != i){
@@ -93,6 +93,7 @@ public class Main {
                 }else{
                     queue.offer(new Node(nr, nc, node.count, i));
                 }
+
             }
         }
 
