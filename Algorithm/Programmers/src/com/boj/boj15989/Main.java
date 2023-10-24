@@ -13,15 +13,17 @@ public class Main {
     
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
         T = Integer.parseInt(bf.readLine());
+
         int[][] dp = new int[10001][4];
 
         dp[1][1] = 1; // 1로 끝나는 것은 1밖에 없다
-        dp[2][1] = 1; //
-        dp[2][2] = 1;
-        dp[3][1] = 1;
-        dp[3][2] = 1;
-        dp[3][3] = 1;
+        dp[2][1] = 1; // 1 + 1
+        dp[2][2] = 1; // 2
+        dp[3][1] = 1; // 1 + 1 + 1
+        dp[3][2] = 1; // 1 + 2
+        dp[3][3] = 1; // 3
 
         for (int i = 4; i < 10001; i++) {
             dp[i][1] = dp[i-1][1];
@@ -33,5 +35,6 @@ public class Main {
            n = Integer.parseInt(bf.readLine());
            System.out.println(dp[n][1] + dp[n][2] + dp[n][3]);
         }
+
     }
 }
