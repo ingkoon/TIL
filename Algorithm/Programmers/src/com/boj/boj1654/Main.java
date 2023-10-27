@@ -16,30 +16,32 @@ public class Main {
         n = Integer.parseInt(st.nextToken());
         arr = new int[k];
 
-        int num = 0;
-        int max = 0;
+        long right = 0;
         for (int i = 0; i < k; i++) {
             int tmp = Integer.parseInt(bf.readLine());
-            num += tmp;
             arr[i] = tmp;
-            max = Math.max(max, tmp);
+            right = Math.max(right, tmp);
         }
 
-        num /= n;
         if(n==1){
-            System.out.println(max);
+            System.out.println(right);
+            return;
         }
-        else{
-            for(int i = num; i >= 1; i--){
-                int cnt = 0;
-                for (int j = 0; j < k; j++) {
-                    cnt += arr[j] / i;
-                }
-                if(cnt >= n){
-                    System.out.println(i);
-                    break;
-                }
+        long left = 1;
+
+        while (left < right){
+            long mid = (left + right) / 2;
+            long sum = 0;
+
+            for (int i = 0; i < k; i++)
+                sum += arr[i] / mid;
+
+            if(sum >= n){
+                left = mid + 1;
+                continue;
             }
+            right = mid - 1;
         }
+        System.out.println((right + left) / 2);
     }
 }
