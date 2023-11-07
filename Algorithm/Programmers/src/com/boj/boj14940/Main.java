@@ -9,7 +9,8 @@ import java.util.StringTokenizer;
 
 public class Main {
     static int n, m, tx, ty;
-    static int[][] visited;
+    static int[][] distances;
+    static boolean[][] visited;
     static int[] dr = {0, 1, 0, -1};
     static int[] dc = {1, 0 , -1, 0};
 
@@ -19,7 +20,9 @@ public class Main {
         StringTokenizer st = new StringTokenizer(bf.readLine());
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
-        visited = new int[n][m];
+
+        distances = new int[n][m];
+        visited = new boolean[n][m];
 
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(bf.readLine());
@@ -30,14 +33,15 @@ public class Main {
                     ty = i;
                 }
                 if (num == 0){
-                    visited[i][j] = num;
+                    distances[i][j] = num;
                     continue;
                 }
-                visited[i][j] = -1;
+                distances[i][j] = -1;
             }
         }
         bfs(tx, ty);
-        for (int[] ints : visited) {
+
+        for (int[] ints : distances) {
             for (int i : ints) {
                 System.out.print(i + " ");
             }
@@ -47,14 +51,15 @@ public class Main {
     static void bfs(int x, int y){
         Queue<Node> queue = new LinkedList<>();
         queue.offer(new Node(x, y, 0));
-
+        visited[y][x] = true;
         while(!queue.isEmpty()){
             Node node = queue.poll();
-            visited[node.y][node.x] = node.cnt;
+            distances[node.y][node.x] = node.cnt;
             for (int i = 0; i < 4; i++) {
                 int ny = node.y + dr[i];
                 int nx = node.x + dc[i];
-                if(!isCheck(nx, ny) || visited[ny][nx] != -1) continue;
+                if(!isCheck(nx, ny) || distances[ny][nx] != -1 || visited[ny][nx]) continue;
+                visited[ny][nx] = true;
                 queue.offer(new Node(nx, ny, node.cnt+1));
             }
         }
