@@ -43,13 +43,13 @@ public class Main {
         if(deleteNumber == start)
             System.out.println(0);
         else{
-            dfs(start, deleteNumber);
+            dfs(start);
             System.out.println(result);
         }
 
     }
 
-    static void dfs(int start, int deleteNumber){
+    static void dfs(int start){
         visited[start] = true;
 
         if(tree[start].size() == 0){
@@ -61,7 +61,7 @@ public class Main {
             int tmp = tree[start].get(i);
             if(visited[tmp])
                 continue;
-            dfs(tmp, deleteNumber);
+            dfs(tmp);
         }
     }
 
