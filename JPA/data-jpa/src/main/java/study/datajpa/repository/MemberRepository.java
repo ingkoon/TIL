@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RestController;
+import study.datajpa.dto.MemberDto;
 import study.datajpa.entity.Member;
 
 import java.util.List;
@@ -18,12 +19,18 @@ public interface MemberRepository extends JpaRepository<Member,Long> {
 
     /**
      * 어플리케이션 로딩 시점에서 쿼리를 파싱하고 문법 오류를 검사한다.
+     * 해당 방식은 실무에서 자주 사용된다.
      * @param userName
      * @param age
      * @return Member.class
      */
     @Query("select m from Member m where m.userName = :userName and m.age = :age")
     List<Member> findUser(@Param("userName") String userName, @Param("age") int age );
-    // 해당 쿼리는 실무에서 많이 사용된다.
 
+
+    @Query("select m.userName from Member m")
+    List<String> findUserNameList();
+
+    @Query("select new study.datajpa.dto.MemberDto(m.id, m.userName, t.name) from Member m join  m.team t")
+    List<MemberDto> findMemberDto();
 }
