@@ -1,5 +1,7 @@
 package study.datajpa.repository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,6 +29,9 @@ public class  MemberRepositoryTest {
     MemberRepository memberRepository;
     @Autowired
     TeamRepository teamRepository;
+
+    @PersistenceContext
+    EntityManager em;
     @Test
     public void basicCRUD(){
         Member member1 = new Member("member1");
@@ -194,5 +199,28 @@ public class  MemberRepositoryTest {
         assertThat(slice.getNumber()).isEqualTo(0);
         assertThat(slice.isFirst()).isEqualTo(true);
         assertThat(slice.hasNext()).isEqualTo(true);
+    }
+
+    @Test
+    public void bulkUpdate(){
+        // given
+        memberRepository.save(new Member("Member1", 10));
+        memberRepository.save(new Member("Member2", 19));
+        memberRepository.save(new Member("Member3", 20));
+        memberRepository.save(new Member("Member4", 21));
+        memberRepository.save(new Member("Member5", 40));
+
+        //when
+        int resultCount = memberRepository.bulkAgePlus(20);
+
+//        em.clear();
+
+        List<Member> result = memberRepository.findByUserName("Member5");
+        Member member5 = result.get(0);
+
+        System.out.println(member5.getAge()); // 40이 조회 될 것이다.(영속성 컨텍스트때문에)
+
+        //then
+        assertThat(resultCount).isEqualTo(3);
     }
 }
