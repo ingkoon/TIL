@@ -253,4 +253,33 @@ public class  MemberRepositoryTest {
         
         //then
     }
+
+    @Test
+    public void queryHint(){
+        //given
+        Member member1 = new Member("member1", 10);
+        memberRepository.save(member1);
+        em.flush(); // 결과를 db에 동기화
+        em.clear();
+
+        //when
+        Member findMember = memberRepository.findReadOnlyByUserName("member1"); // readonly는 변경감지를 적용하지 않는다.
+        findMember.setUserName("member2");
+
+        em.flush(); // 변경된 상태를 감지 후 DB 상태를 업데이트시킨다.
+        //then
+    }
+
+    @Test
+    public void lock(){
+        //given
+        Member member1 = new Member("member1", 10);
+        memberRepository.save(member1);
+        em.flush(); // 결과를 db에 동기화
+        em.clear();
+
+        //when
+        List<Member> list= memberRepository.findLockByUserName("member1");
+        //then
+    }
 }
