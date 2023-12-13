@@ -15,7 +15,7 @@ import java.util.List;
         query = "select m from Member m where m.userName = :userName"
 )
 
-public class Member extends JpaBaseEntity{
+public class Member extends BaseEntity{
 
     @Id @GeneratedValue
     @Column(name = "member_id")
