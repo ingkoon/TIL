@@ -16,7 +16,6 @@ public class Main {
         n = Integer.parseInt(bf.readLine());
 
         board = new int[n][3];
-        int[][] visited = new int[n][3];
 
         for (int i = 0; i < n; i++) {
             StringTokenizer st = new StringTokenizer(bf.readLine());
@@ -28,7 +27,6 @@ public class Main {
         for (int i = 0; i < 3; i++) {
             result = Math.min(result, calc(i));
         }
-
 
         System.out.println(result);
     }
@@ -61,12 +59,8 @@ public class Main {
                     visited[n-1][2] = Math.min(visited[n-2][0], visited[n-2][1]) + board[n-1][2];
             }
         }
-        int result = INF;
-        for (int i = 0; i < 3; i++) {
-            result = Math.min(result, visited[n-1][i]);
-        }
 
-        return result;
+        return Math.min(visited[n-1][0], Math.min(visited[n-1][1], visited[n-1][2]));
     }
 
 }
